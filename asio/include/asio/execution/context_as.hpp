@@ -2,7 +2,7 @@
 // execution/context_as.hpp
 // ~~~~~~~~~~~~~~~~~~~~~~~~
 //
-// Copyright (c) 2003-2020 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+// Copyright (c) 2003-2021 Christopher M. Kohlhoff (chris at kohlhoff dot com)
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -101,12 +101,12 @@ struct context_as_t
   && defined(ASIO_HAS_SFINAE_VARIABLE_TEMPLATES)
   template <typename E>
   static ASIO_CONSTEXPR
-  typename traits::query_static_constexpr_member<E, context_t>::result_type
+  typename context_t::query_static_constexpr_member<E>::result_type
   static_query()
     ASIO_NOEXCEPT_IF((
-      traits::query_static_constexpr_member<E, context_t>::is_noexcept))
+      context_t::query_static_constexpr_member<E>::is_noexcept))
   {
-    return traits::query_static_constexpr_member<E, context_t>::value();
+    return context_t::query_static_constexpr_member<E>::value();
   }
 
   template <typename E, typename U = decltype(context_as_t::static_query<E>())>
