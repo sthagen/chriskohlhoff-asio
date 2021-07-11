@@ -104,7 +104,7 @@ sub copy_source_file
   $is_test = 1 if ($from =~ /tests\/unit/);
 
   my $is_coroutine_related = 0;
-  $is_coroutine_related = 1 if ($from =~ /await/);
+  $is_coroutine_related = 1 if ($from =~ /await/ || $from =~ /partial_promise/);
 
   my $is_hash_related = 0;
   $is_hash_related = 1 if ($from =~ /ip\/address/ || $from =~ /ip\/basic_endpoint/);
@@ -376,6 +376,7 @@ sub copy_include_files
       "include/asio/execution/detail",
       "include/asio/execution/impl",
       "include/asio/experimental",
+      "include/asio/experimental/detail",
       "include/asio/experimental/impl",
       "include/asio/generic",
       "include/asio/generic/detail",
@@ -440,6 +441,8 @@ sub copy_unit_tests
       "src/tests/unit",
       "src/tests/unit/archetypes",
       "src/tests/unit/execution",
+      "src/tests/unit/experimental",
+      "src/tests/unit/experimental/coro",
       "src/tests/unit/generic",
       "src/tests/unit/ip",
       "src/tests/unit/local",
@@ -569,8 +572,10 @@ sub copy_examples
       "src/examples/cpp11/ssl",
       "src/examples/cpp11/timeouts",
       "src/examples/cpp11/timers",
+      "src/examples/cpp14/deferred",
       "src/examples/cpp14/executors",
       "src/examples/cpp14/operations",
+      "src/examples/cpp14/parallel_group",
       "src/examples/cpp17/coroutines_ts");
 
   our $boost_dir;
