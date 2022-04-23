@@ -387,6 +387,7 @@ sub copy_include_files
       "include/asio/execution/impl",
       "include/asio/experimental",
       "include/asio/experimental/detail",
+      "include/asio/experimental/detail/impl",
       "include/asio/experimental/impl",
       "include/asio/generic",
       "include/asio/generic/detail",
@@ -568,6 +569,7 @@ sub copy_examples
       "src/examples/cpp11/echo",
       "src/examples/cpp11/executors",
       "src/examples/cpp11/fork",
+      "src/examples/cpp11/files",
       "src/examples/cpp11/futures",
       "src/examples/cpp11/handler_tracking",
       "src/examples/cpp11/http/server",
@@ -587,7 +589,8 @@ sub copy_examples
       "src/examples/cpp14/iostreams",
       "src/examples/cpp14/operations",
       "src/examples/cpp14/parallel_group",
-      "src/examples/cpp17/coroutines_ts");
+      "src/examples/cpp17/coroutines_ts",
+      "src/examples/cpp20/channels");
 
   our $boost_dir;
   foreach my $dir (@dirs)
@@ -621,6 +624,7 @@ sub copy_doc
       "src/doc/std_executors.qbk",
       "src/doc/tutorial.xsl",
       glob("src/doc/overview/*.qbk"),
+      glob("src/doc/overview/model/*.qbk"),
       glob("src/doc/requirements/*.qbk"));
   foreach my $file (@files)
   {

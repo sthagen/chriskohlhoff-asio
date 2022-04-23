@@ -1,13 +1,13 @@
 #!/usr/bin/perl -w
 
-# Copyright (c) 2003-2021 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+# Copyright (c) 2003-2022 Christopher M. Kohlhoff (chris at kohlhoff dot com)
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 use strict;
 
-system("doxygen reference.dox");
+system("/Users/chris/Projects/doxygen-1.5.1/bin/doxygen reference.dox");
 chdir("xml");
 system("xsltproc combine.xslt index.xml > all.xml");
 chdir("..");

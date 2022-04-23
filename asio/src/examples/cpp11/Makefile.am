@@ -26,6 +26,8 @@ noinst_PROGRAMS = \
 	executors/fork_join \
 	executors/pipeline \
 	executors/priority_scheduler \
+	files/blocking_file_copy \
+	files/async_file_copy \
 	futures/daytime_client \
 	handler_tracking/async_tcp_echo_server \
 	http/server/http_server \
@@ -57,7 +59,9 @@ noinst_PROGRAMS += \
 	local/connect_pair \
 	local/iostream_client \
 	local/stream_server \
-	local/stream_client
+	local/stream_client \
+	local/fd_passing_stream_server \
+	local/fd_passing_stream_client
 endif
 
 if HAVE_OPENSSL
@@ -94,6 +98,8 @@ executors_bank_account_2_SOURCES = executors/bank_account_2.cpp
 executors_fork_join_SOURCES = executors/fork_join.cpp
 executors_pipeline_SOURCES = executors/pipeline.cpp
 executors_priority_scheduler_SOURCES = executors/priority_scheduler.cpp
+files_blocking_file_copy_SOURCES = files/blocking_file_copy.cpp
+files_async_file_copy_SOURCES = files/async_file_copy.cpp
 futures_daytime_client_SOURCES = futures/daytime_client.cpp
 handler_tracking_async_tcp_echo_server_SOURCES = handler_tracking/async_tcp_echo_server.cpp
 http_server_http_server_SOURCES = \
@@ -133,6 +139,8 @@ local_connect_pair_SOURCES = local/connect_pair.cpp
 local_iostream_client_SOURCES = local/iostream_client.cpp
 local_stream_server_SOURCES = local/stream_server.cpp
 local_stream_client_SOURCES = local/stream_client.cpp
+local_fd_passing_stream_server_SOURCES = local/fd_passing_stream_server.cpp
+local_fd_passing_stream_client_SOURCES = local/fd_passing_stream_client.cpp
 endif
 
 if HAVE_OPENSSL
@@ -157,7 +165,12 @@ EXTRA_DIST = \
 	http/server/request.hpp \
 	http/server/request_handler.hpp \
 	http/server/request_parser.hpp \
-	http/server/server.hpp
+	http/server/server.hpp \
+	ssl/README \
+	ssl/ca.pem \
+	ssl/server.pem \
+	ssl/dh4096.pem
+
 
 MAINTAINERCLEANFILES = \
 	$(srcdir)/Makefile.in
