@@ -12,6 +12,8 @@ endif
 SUBDIRS = properties
 
 check_PROGRAMS = \
+	unit/append \
+	unit/as_tuple \
 	unit/associated_allocator \
 	unit/associated_cancellation_slot \
 	unit/associated_executor \
@@ -54,6 +56,7 @@ check_PROGRAMS = \
 	unit/coroutine \
 	unit/deadline_timer \
 	unit/defer \
+	unit/deferred \
 	unit/detached \
 	unit/dispatch \
 	unit/error \
@@ -129,6 +132,7 @@ check_PROGRAMS = \
 	unit/posix/descriptor_base \
 	unit/posix/stream_descriptor \
 	unit/post \
+	unit/prepend \
 	unit/random_access_file \
 	unit/read \
 	unit/read_at \
@@ -188,18 +192,6 @@ noinst_PROGRAMS = \
 	performance/server
 endif
 
-if HAVE_CXX11
-check_PROGRAMS += \
-	unit/experimental/as_tuple
-endif
-
-if HAVE_CXX14
-check_PROGRAMS += \
-	unit/experimental/append \
-	unit/experimental/deferred \
-	unit/experimental/prepend
-endif
-
 if HAVE_CXX17
 check_PROGRAMS += \
 	unit/experimental/basic_channel \
@@ -239,6 +231,8 @@ check_PROGRAMS += \
 endif
 
 TESTS = \
+	unit/append \
+	unit/as_tuple \
 	unit/associated_allocator \
 	unit/associated_cancellation_slot \
 	unit/associated_executor \
@@ -280,6 +274,7 @@ TESTS = \
 	unit/connect_pipe \
 	unit/deadline_timer \
 	unit/defer \
+	unit/deferred \
 	unit/detached \
 	unit/dispatch \
 	unit/error \
@@ -350,6 +345,7 @@ TESTS = \
 	unit/posix/descriptor_base \
 	unit/posix/stream_descriptor \
 	unit/post \
+	unit/prepend \
 	unit/random_access_file \
 	unit/read \
 	unit/read_at \
@@ -398,18 +394,6 @@ TESTS = \
 	unit/writable_pipe \
 	unit/write \
 	unit/write_at
-
-if HAVE_CXX11
-TESTS += \
-	unit/experimental/as_tuple
-endif
-
-if HAVE_CXX14
-TESTS += \
-	unit/experimental/append \
-	unit/experimental/deferred \
-	unit/experimental/prepend
-endif
 
 if HAVE_CXX17
 TESTS += \
@@ -464,6 +448,8 @@ performance_client_SOURCES = performance/client.cpp
 performance_server_SOURCES = performance/server.cpp
 endif
 
+unit_append_SOURCES = unit/append.cpp
+unit_as_tuple_SOURCES = unit/as_tuple.cpp
 unit_associated_allocator_SOURCES = unit/associated_allocator.cpp
 unit_associated_cancellation_slot_SOURCES = unit/associated_cancellation_slot.cpp
 unit_associated_executor_SOURCES = unit/associated_executor.cpp
@@ -506,6 +492,7 @@ unit_connect_pipe_SOURCES = unit/connect_pipe.cpp
 unit_coroutine_SOURCES = unit/coroutine.cpp
 unit_deadline_timer_SOURCES = unit/deadline_timer.cpp
 unit_defer_SOURCES = unit/defer.cpp
+unit_deferred_SOURCES = unit/deferred.cpp
 unit_detached_SOURCES = unit/detached.cpp
 unit_dispatch_SOURCES = unit/dispatch.cpp
 unit_error_SOURCES = unit/error.cpp
@@ -581,6 +568,7 @@ unit_posix_descriptor_SOURCES = unit/posix/descriptor.cpp
 unit_posix_descriptor_base_SOURCES = unit/posix/descriptor_base.cpp
 unit_posix_stream_descriptor_SOURCES = unit/posix/stream_descriptor.cpp
 unit_post_SOURCES = unit/post.cpp
+unit_prepend_SOURCES = unit/prepend.cpp
 unit_random_access_file_SOURCES = unit/random_access_file.cpp
 unit_read_SOURCES = unit/read.cpp
 unit_read_at_SOURCES = unit/read_at.cpp
@@ -629,16 +617,6 @@ unit_windows_stream_handle_SOURCES = unit/windows/stream_handle.cpp
 unit_writable_pipe_SOURCES = unit/writable_pipe.cpp
 unit_write_SOURCES = unit/write.cpp
 unit_write_at_SOURCES = unit/write_at.cpp
-
-if HAVE_CXX11
-unit_experimental_as_tuple_SOURCES = unit/experimental/as_tuple.cpp
-endif
-
-if HAVE_CXX14
-unit_experimental_append_SOURCES = unit/experimental/append.cpp
-unit_experimental_deferred_SOURCES = unit/experimental/deferred.cpp
-unit_experimental_prepend_SOURCES = unit/experimental/prepend.cpp
-endif
 
 if HAVE_CXX17
 unit_experimental_basic_channel_SOURCES = unit/experimental/basic_channel.cpp

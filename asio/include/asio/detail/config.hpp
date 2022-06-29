@@ -465,6 +465,17 @@
 # endif // !defined(ASIO_DISABLE_CONCEPTS)
 #endif // !defined(ASIO_HAS_CONCEPTS)
 
+// Support concepts on compilers known to allow them.
+#if !defined(ASIO_HAS_STD_CONCEPTS)
+# if !defined(ASIO_DISABLE_STD_CONCEPTS)
+#  if defined(ASIO_HAS_CONCEPTS)
+#   if (__cpp_lib_concepts >= 202002L)
+#    define ASIO_HAS_STD_CONCEPTS 1
+#   endif // (__cpp_concepts >= 202002L)
+#  endif // defined(ASIO_HAS_CONCEPTS)
+# endif // !defined(ASIO_DISABLE_STD_CONCEPTS)
+#endif // !defined(ASIO_HAS_STD_CONCEPTS)
+
 // Support template variables on compilers known to allow it.
 #if !defined(ASIO_HAS_VARIABLE_TEMPLATES)
 # if !defined(ASIO_DISABLE_VARIABLE_TEMPLATES)
@@ -849,6 +860,35 @@
 # endif // !defined(ASIO_DISABLE_BOOST_DATE_TIME)
 #endif // !defined(ASIO_HAS_BOOST_DATE_TIME)
 
+// Boost support for the Coroutine library.
+#if !defined(ASIO_HAS_BOOST_COROUTINE)
+# if !defined(ASIO_DISABLE_BOOST_COROUTINE)
+#  define ASIO_HAS_BOOST_COROUTINE 1
+# endif // !defined(ASIO_DISABLE_BOOST_COROUTINE)
+#endif // !defined(ASIO_HAS_BOOST_COROUTINE)
+
+// Boost support for the Context library's fibers.
+#if !defined(ASIO_HAS_BOOST_CONTEXT_FIBER)
+# if !defined(ASIO_DISABLE_BOOST_CONTEXT_FIBER)
+#  if defined(__clang__)
+#   if (__cplusplus >= 201103)
+#    define ASIO_HAS_BOOST_CONTEXT_FIBER 1
+#   endif // (__cplusplus >= 201103)
+#  elif defined(__GNUC__)
+#   if ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4)
+#    if (__cplusplus >= 201103) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#     define ASIO_HAS_BOOST_CONTEXT_FIBER 1
+#    endif // (__cplusplus >= 201103) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#   endif // ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4)
+#  endif // defined(__GNUC__)
+#  if defined(ASIO_MSVC)
+#   if (_MSVC_LANG >= 201103)
+#    define ASIO_HAS_BOOST_CONTEXT_FIBER 1
+#   endif // (_MSC_LANG >= 201103)
+#  endif // defined(ASIO_MSVC)
+# endif // !defined(ASIO_DISABLE_BOOST_CONTEXT_FIBER)
+#endif // !defined(ASIO_HAS_BOOST_CONTEXT_FIBER)
+
 // Standard library support for addressof.
 #if !defined(ASIO_HAS_STD_ADDRESSOF)
 # if !defined(ASIO_DISABLE_STD_ADDRESSOF)
@@ -1121,6 +1161,32 @@
 # endif // !defined(ASIO_DISABLE_STD_FUTURE)
 #endif // !defined(ASIO_HAS_STD_FUTURE)
 
+// Standard library support for std::tuple.
+#if !defined(ASIO_HAS_STD_TUPLE)
+# if !defined(ASIO_DISABLE_STD_TUPLE)
+#  if defined(__clang__)
+#   if defined(ASIO_HAS_CLANG_LIBCXX)
+#    define ASIO_HAS_STD_TUPLE 1
+#   elif (__cplusplus >= 201103)
+#    if __has_include(<tuple>)
+#     define ASIO_HAS_STD_TUPLE 1
+#    endif // __has_include(<tuple>)
+#   endif // (__cplusplus >= 201103)
+#  elif defined(__GNUC__)
+#   if ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4)
+#    if (__cplusplus >= 201103) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#     define ASIO_HAS_STD_TUPLE 1
+#    endif // (__cplusplus >= 201103) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#   endif // ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4)
+#  endif // defined(__GNUC__)
+#  if defined(ASIO_MSVC)
+#   if (_MSC_VER >= 1700)
+#    define ASIO_HAS_STD_TUPLE 1
+#   endif // (_MSC_VER >= 1700)
+#  endif // defined(ASIO_MSVC)
+# endif // !defined(ASIO_DISABLE_STD_TUPLE)
+#endif // !defined(ASIO_HAS_STD_TUPLE)
+
 // Standard library support for std::string_view.
 #if !defined(ASIO_HAS_STD_STRING_VIEW)
 # if !defined(ASIO_DISABLE_STD_STRING_VIEW)
@@ -1333,6 +1399,50 @@
 #  endif // defined(ASIO_HAS_STD_EXPERIMENTAL_SOURCE_LOCATION)
 # endif // !defined(ASIO_DISABLE_SOURCE_LOCATION)
 #endif // !defined(ASIO_HAS_SOURCE_LOCATION)
+
+// Boost support for source_location and system errors.
+#if !defined(ASIO_HAS_BOOST_SOURCE_LOCATION)
+# if !defined(ASIO_DISABLE_BOOST_SOURCE_LOCATION)
+#  if defined(ASIO_HAS_BOOST_CONFIG) && (BOOST_VERSION >= 107900)
+#   define ASIO_HAS_BOOST_SOURCE_LOCATION 1
+#  endif // defined(ASIO_HAS_BOOST_CONFIG) && (BOOST_VERSION >= 107900)
+# endif // !defined(ASIO_DISABLE_BOOST_SOURCE_LOCATION)
+#endif // !defined(ASIO_HAS_BOOST_SOURCE_LOCATION)
+
+// Helper macros for working with Boost source locations.
+#if defined(ASIO_HAS_BOOST_SOURCE_LOCATION)
+# define ASIO_SOURCE_LOCATION_PARAM \
+  , const boost::source_location& loc
+# define ASIO_SOURCE_LOCATION_DEFAULTED_PARAM \
+  , const boost::source_location& loc = BOOST_CURRENT_LOCATION
+# define ASIO_SOURCE_LOCATION_ARG , loc
+#else // if defined(ASIO_HAS_BOOST_SOURCE_LOCATION)
+# define ASIO_SOURCE_LOCATION_PARAM
+# define ASIO_SOURCE_LOCATION_DEFAULTED_PARAM
+# define ASIO_SOURCE_LOCATION_ARG
+#endif // if defined(ASIO_HAS_BOOST_SOURCE_LOCATION)
+
+// Standard library support for std::index_sequence.
+#if !defined(ASIO_HAS_STD_INDEX_SEQUENCE)
+# if !defined(ASIO_DISABLE_STD_INDEX_SEQUENCE)
+#  if defined(__clang__)
+#   if (__cplusplus >= 201402)
+#    define ASIO_HAS_STD_INDEX_SEQUENCE 1
+#   endif // (__cplusplus >= 201402)
+#  elif defined(__GNUC__)
+#   if (__GNUC__ >= 7)
+#    if (__cplusplus >= 201402)
+#     define ASIO_HAS_STD_INDEX_SEQUENCE 1
+#    endif // (__cplusplus >= 201402)
+#   endif // (__GNUC__ >= 7)
+#  endif // defined(__GNUC__)
+#  if defined(ASIO_MSVC)
+#   if (_MSC_VER >= 1910) && (_MSVC_LANG >= 201402)
+#    define ASIO_HAS_STD_INDEX_SEQUENCE 1
+#   endif // (_MSC_VER >= 1910) && (_MSVC_LANG >= 201402)
+#  endif // defined(ASIO_MSVC)
+# endif // !defined(ASIO_DISABLE_STD_INDEX_SEQUENCE)
+#endif // !defined(ASIO_HAS_STD_INDEX_SEQUENCE)
 
 // Windows App target. Windows but with a limited API.
 #if !defined(ASIO_WINDOWS_APP)
@@ -2000,5 +2110,27 @@
 #  endif // defined(ASIO_MSVC)
 # endif // !defined(ASIO_DISABLE_STD_HASH)
 #endif // !defined(ASIO_HAS_STD_HASH)
+
+// Standard library support for std::to_address.
+#if !defined(ASIO_HAS_STD_TO_ADDRESS)
+# if !defined(ASIO_DISABLE_STD_TO_ADDRESS)
+#  if defined(__clang__)
+#   if (__cplusplus >= 202002)
+#    define ASIO_HAS_STD_TO_ADDRESS 1
+#   endif // (__cplusplus >= 202002)
+#  elif defined(__GNUC__)
+#   if (__GNUC__ >= 8)
+#    if (__cplusplus >= 202002)
+#     define ASIO_HAS_STD_TO_ADDRESS 1
+#    endif // (__cplusplus >= 202002)
+#   endif // (__GNUC__ >= 8)
+#  endif // defined(__GNUC__)
+#  if defined(ASIO_MSVC)
+#   if (_MSC_VER >= 1922) && (_MSVC_LANG >= 202002)
+#    define ASIO_HAS_STD_TO_ADDRESS 1
+#   endif // (_MSC_VER >= 1922) && (_MSVC_LANG >= 202002)
+#  endif // defined(ASIO_MSVC)
+# endif // !defined(ASIO_DISABLE_STD_TO_ADDRESS)
+#endif // !defined(ASIO_HAS_STD_TO_ADDRESS)
 
 #endif // ASIO_DETAIL_CONFIG_HPP

@@ -14,6 +14,8 @@ noinst_PROGRAMS = \
 	buffers/reference_counted \
 	chat/chat_client \
 	chat/chat_server \
+	deferred/deferred_1 \
+	deferred/deferred_2 \
 	echo/async_tcp_echo_server \
 	echo/async_udp_echo_server \
 	echo/blocking_tcp_echo_client \
@@ -44,6 +46,10 @@ noinst_PROGRAMS = \
 	operations/composed_6 \
 	operations/composed_7 \
 	operations/composed_8 \
+  parallel_group/wait_for_all \
+  parallel_group/wait_for_one \
+  parallel_group/wait_for_one_error \
+  parallel_group/wait_for_one_success \
 	socks4/sync_client \
 	timeouts/async_tcp_client \
 	timeouts/blocking_tcp_client \
@@ -86,6 +92,8 @@ allocation_server_SOURCES = allocation/server.cpp
 buffers_reference_counted_SOURCES = buffers/reference_counted.cpp
 chat_chat_client_SOURCES = chat/chat_client.cpp
 chat_chat_server_SOURCES = chat/chat_server.cpp
+deferred_deferred_1_SOURCES = deferred/deferred_1.cpp
+deferred_deferred_2_SOURCES = deferred/deferred_2.cpp
 echo_async_tcp_echo_server_SOURCES = echo/async_tcp_echo_server.cpp
 echo_async_udp_echo_server_SOURCES = echo/async_udp_echo_server.cpp
 echo_blocking_tcp_echo_client_SOURCES = echo/blocking_tcp_echo_client.cpp
@@ -124,6 +132,10 @@ operations_composed_5_SOURCES = operations/composed_5.cpp
 operations_composed_6_SOURCES = operations/composed_6.cpp
 operations_composed_7_SOURCES = operations/composed_7.cpp
 operations_composed_8_SOURCES = operations/composed_8.cpp
+parallel_group_wait_for_all_SOURCES = parallel_group/wait_for_all.cpp
+parallel_group_wait_for_one_SOURCES = parallel_group/wait_for_one.cpp
+parallel_group_wait_for_one_error_SOURCES = parallel_group/wait_for_one_error.cpp
+parallel_group_wait_for_one_success_SOURCES = parallel_group/wait_for_one_success.cpp
 socks4_sync_client_SOURCES = socks4/sync_client.cpp
 timeouts_async_tcp_client_SOURCES = timeouts/async_tcp_client.cpp
 timeouts_blocking_tcp_client_SOURCES = timeouts/blocking_tcp_client.cpp

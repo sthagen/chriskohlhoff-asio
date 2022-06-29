@@ -7,6 +7,8 @@
 *.manifest
 *.pdb
 *.tds
+append
+as_tuple
 associated_allocator
 associated_cancellation_slot
 associated_executor
@@ -49,6 +51,7 @@ connect_pipe
 coroutine
 deadline_timer
 defer
+deferred
 detached
 dispatch
 error
@@ -66,6 +69,7 @@ is_write_buffered
 packaged_task
 placeholders
 post
+prepend
 random_access_file
 read
 read_at

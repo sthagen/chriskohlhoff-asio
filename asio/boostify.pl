@@ -288,6 +288,11 @@ sub copy_source_file
       $line =~ s/asio::/boost::asio::/g if !$is_xsl;
       print_line($output, $line, $from, $lineno);
     }
+    elsif ($line =~ /ec\.assign\(0, ec\.category\(\)\)/)
+    {
+      $line =~ s/ec\.assign\(0, ec\.category\(\)\)/ec = boost::system::error_code()/g;
+      print_line($output, $line, $from, $lineno);
+    }
     elsif ($line =~ /^} \/\/ namespace std/ && !$is_coroutine_related && !$is_hash_related)
     {
       print_line($output, "} // namespace system", $from, $lineno);
@@ -566,6 +571,7 @@ sub copy_examples
       "src/examples/cpp11/allocation",
       "src/examples/cpp11/buffers",
       "src/examples/cpp11/chat",
+      "src/examples/cpp11/deferred",
       "src/examples/cpp11/echo",
       "src/examples/cpp11/executors",
       "src/examples/cpp11/fork",
