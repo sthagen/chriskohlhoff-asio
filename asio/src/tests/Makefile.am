@@ -53,6 +53,7 @@ check_PROGRAMS = \
 	unit/compose \
 	unit/connect \
 	unit/connect_pipe \
+	unit/consign \
 	unit/coroutine \
 	unit/deadline_timer \
 	unit/defer \
@@ -208,6 +209,8 @@ check_PROGRAMS += \
 if HAVE_COROUTINES
 check_PROGRAMS += \
 	unit/experimental/awaitable_operators \
+	unit/experimental/co_composed \
+	unit/experimental/coro/allocator \
 	unit/experimental/coro/cancel \
 	unit/experimental/coro/co_spawn \
 	unit/experimental/coro/exception \
@@ -272,6 +275,7 @@ TESTS = \
 	unit/compose \
 	unit/connect \
 	unit/connect_pipe \
+	unit/consign \
 	unit/deadline_timer \
 	unit/defer \
 	unit/deferred \
@@ -411,6 +415,8 @@ TESTS += \
 if HAVE_COROUTINES
 TESTS += \
 	unit/experimental/awaitable_operators \
+	unit/experimental/co_composed \
+	unit/experimental/coro/allocator \
 	unit/experimental/coro/cancel \
 	unit/experimental/coro/co_spawn \
 	unit/experimental/coro/exception \
@@ -489,6 +495,7 @@ unit_completion_condition_SOURCES = unit/completion_condition.cpp
 unit_compose_SOURCES = unit/compose.cpp
 unit_connect_SOURCES = unit/connect.cpp
 unit_connect_pipe_SOURCES = unit/connect_pipe.cpp
+unit_consign_SOURCES = unit/consign.cpp
 unit_coroutine_SOURCES = unit/coroutine.cpp
 unit_deadline_timer_SOURCES = unit/deadline_timer.cpp
 unit_defer_SOURCES = unit/defer.cpp
@@ -631,6 +638,8 @@ unit_experimental_promise_SOURCES = unit/experimental/promise.cpp
 
 if HAVE_COROUTINES
 unit_experimental_awaitable_operators_SOURCES = unit/experimental/awaitable_operators.cpp
+unit_experimental_co_composed_SOURCES = unit/experimental/co_composed.cpp
+unit_experimental_coro_allocator_SOURCES = unit/experimental/coro/allocator.cpp
 unit_experimental_coro_cancel_SOURCES = unit/experimental/coro/cancel.cpp
 unit_experimental_coro_co_spawn_SOURCES = unit/experimental/coro/co_spawn.cpp
 unit_experimental_coro_exception_SOURCES = unit/experimental/coro/exception.cpp

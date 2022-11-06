@@ -480,6 +480,19 @@ Examples showing how to implement composed asynchronous operations as reusable l
 * [@../src/examples/cpp11/operations/composed_8.cpp]
 
 
+[heading Parallel Groups]
+
+Examples showing how to use the [link
+asio.reference.experimental__make_parallel_group
+`experimental::make_parallel_group`] operation.
+
+* [@../src/examples/cpp11/parallel_group/wait_for_all.cpp]
+* [@../src/examples/cpp11/parallel_group/wait_for_one.cpp]
+* [@../src/examples/cpp11/parallel_group/wait_for_one_error.cpp]
+* [@../src/examples/cpp11/parallel_group/wait_for_one_success.cpp]
+* [@../src/examples/cpp11/parallel_group/ranged_wait_for_all.cpp]
+
+
 [heading SOCKS 4]
 
 Example client program implementing the SOCKS 4 protocol for communication via
@@ -525,6 +538,20 @@ operations after a period of time.
 Example showing how to customise basic_waitable_timer using a different clock type.
 
 * [@../src/examples/cpp11/timers/time_t_timer.cpp] ([@examples/diffs/timers/time_t_timer.cpp.html diff to C++03])
+
+
+[heading Type Erasure]
+
+Example showing how to use [link asio.reference.any_completion_handler
+`any_completion_handler`] to enable separate compilation of asynchronous
+operations.
+
+* [@../src/examples/cpp11/type_erasure/main.cpp]
+* [@../src/examples/cpp11/type_erasure/line_reader.hpp]
+* [@../src/examples/cpp11/type_erasure/stdin_line_reader.hpp]
+* [@../src/examples/cpp11/type_erasure/stdin_line_reader.cpp]
+* [@../src/examples/cpp11/type_erasure/sleep.hpp]
+* [@../src/examples/cpp11/type_erasure/sleep.cpp]
 
 
 [heading UNIX Domain Sockets]
@@ -612,6 +639,7 @@ Examples showing how to expose callback-based APIs as asynchronous operations.
 * [@../src/examples/cpp14/operations/callback_wrapper.cpp]
 * [@../src/examples/cpp14/operations/c_callback_wrapper.cpp]
 
+
 [heading Parallel Groups]
 
 Examples showing how to use the [link
@@ -623,7 +651,7 @@ asio.reference.experimental__make_parallel_group
 * [@../src/examples/cpp14/parallel_group/wait_for_one.cpp]
 * [@../src/examples/cpp14/parallel_group/wait_for_one_error.cpp]
 * [@../src/examples/cpp14/parallel_group/wait_for_one_success.cpp]
-
+* [@../src/examples/cpp14/parallel_group/ranged_wait_for_all.cpp]
 
 
 [endsect]
@@ -653,7 +681,7 @@ Coroutines TS.
 
 Example showing how to use a channel in conjunction with C++20 coroutines.
 
-* [@boost_asio/example/cpp20/channels/throttling_proxy.cpp]
+* [@../src/examples/cpp20/channels/throttling_proxy.cpp]
 
 
 [heading Coroutines]
@@ -689,6 +717,20 @@ Examples showing how to expose callback-based APIs as asynchronous operations.
 
 * [@../src/examples/cpp20/operations/callback_wrapper.cpp]
 * [@../src/examples/cpp20/operations/c_callback_wrapper.cpp]
+
+
+[heading Type Erasure]
+
+Example showing how to use [link asio.reference.any_completion_handler
+`any_completion_handler`] to enable separate compilation of asynchronous
+operations.
+
+* [@../src/examples/cpp20/type_erasure/main.cpp]
+* [@../src/examples/cpp20/type_erasure/line_reader.hpp]
+* [@../src/examples/cpp20/type_erasure/stdin_line_reader.hpp]
+* [@../src/examples/cpp20/type_erasure/stdin_line_reader.cpp]
+* [@../src/examples/cpp20/type_erasure/sleep.hpp]
+* [@../src/examples/cpp20/type_erasure/sleep.cpp]
 
 
 [endsect]
