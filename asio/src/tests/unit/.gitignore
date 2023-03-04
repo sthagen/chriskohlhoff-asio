@@ -12,6 +12,7 @@ as_tuple
 associated_allocator
 associated_cancellation_slot
 associated_executor
+associated_immediate_executor
 associator
 async_result
 awaitable
@@ -34,6 +35,7 @@ basic_writable_pipe
 bind_allocator
 bind_cancellation_slot
 bind_executor
+bind_immediate_executor
 buffer
 buffer_registration
 buffered_read_stream

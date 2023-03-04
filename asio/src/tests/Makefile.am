@@ -17,6 +17,7 @@ check_PROGRAMS = \
 	unit/associated_allocator \
 	unit/associated_cancellation_slot \
 	unit/associated_executor \
+	unit/associated_immediate_executor \
 	unit/associator \
 	unit/async_result \
 	unit/awaitable \
@@ -39,6 +40,7 @@ check_PROGRAMS = \
 	unit/bind_allocator \
 	unit/bind_cancellation_slot \
 	unit/bind_executor \
+	unit/bind_immediate_executor \
 	unit/buffered_read_stream \
 	unit/buffered_stream \
 	unit/buffered_write_stream \
@@ -124,6 +126,7 @@ check_PROGRAMS = \
 	unit/local/basic_endpoint \
 	unit/local/connect_pair \
 	unit/local/datagram_protocol \
+	unit/local/seq_packet_protocol \
 	unit/local/stream_protocol \
 	unit/packaged_task \
 	unit/placeholders \
@@ -239,6 +242,7 @@ TESTS = \
 	unit/associated_allocator \
 	unit/associated_cancellation_slot \
 	unit/associated_executor \
+	unit/associated_immediate_executor \
 	unit/associator \
 	unit/async_result \
 	unit/awaitable \
@@ -261,6 +265,7 @@ TESTS = \
 	unit/bind_allocator \
 	unit/bind_cancellation_slot \
 	unit/bind_executor \
+	unit/bind_immediate_executor \
 	unit/buffered_read_stream \
 	unit/buffered_stream \
 	unit/buffered_write_stream \
@@ -340,6 +345,7 @@ TESTS = \
 	unit/local/basic_endpoint \
 	unit/local/connect_pair \
 	unit/local/datagram_protocol \
+	unit/local/seq_packet_protocol \
 	unit/local/stream_protocol \
 	unit/packaged_task \
 	unit/placeholders \
@@ -459,6 +465,7 @@ unit_as_tuple_SOURCES = unit/as_tuple.cpp
 unit_associated_allocator_SOURCES = unit/associated_allocator.cpp
 unit_associated_cancellation_slot_SOURCES = unit/associated_cancellation_slot.cpp
 unit_associated_executor_SOURCES = unit/associated_executor.cpp
+unit_associated_immediate_executor_SOURCES = unit/associated_immediate_executor.cpp
 unit_associator_SOURCES = unit/associator.cpp
 unit_async_result_SOURCES = unit/async_result.cpp
 unit_awaitable_SOURCES = unit/awaitable.cpp
@@ -481,6 +488,7 @@ unit_basic_writable_pipe_SOURCES = unit/basic_writable_pipe.cpp
 unit_bind_allocator_SOURCES = unit/bind_allocator.cpp
 unit_bind_cancellation_slot_SOURCES = unit/bind_cancellation_slot.cpp
 unit_bind_executor_SOURCES = unit/bind_executor.cpp
+unit_bind_immediate_executor_SOURCES = unit/bind_immediate_executor.cpp
 unit_buffer_SOURCES = unit/buffer.cpp
 unit_buffer_registration_SOURCES = unit/buffer_registration.cpp
 unit_buffers_iterator_SOURCES = unit/buffers_iterator.cpp
@@ -566,6 +574,7 @@ unit_is_write_buffered_SOURCES = unit/is_write_buffered.cpp
 unit_local_basic_endpoint_SOURCES = unit/local/basic_endpoint.cpp
 unit_local_connect_pair_SOURCES = unit/local/connect_pair.cpp
 unit_local_datagram_protocol_SOURCES = unit/local/datagram_protocol.cpp
+unit_local_seq_packet_protocol_SOURCES = unit/local/seq_packet_protocol.cpp
 unit_local_stream_protocol_SOURCES = unit/local/stream_protocol.cpp
 unit_packaged_task_SOURCES = unit/packaged_task.cpp
 unit_placeholders_SOURCES = unit/placeholders.cpp
