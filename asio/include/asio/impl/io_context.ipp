@@ -65,13 +65,6 @@ io_context::count_type io_context::run()
   return s;
 }
 
-#if !defined(ASIO_NO_DEPRECATED)
-io_context::count_type io_context::run(asio::error_code& ec)
-{
-  return impl_.run(ec);
-}
-#endif // !defined(ASIO_NO_DEPRECATED)
-
 io_context::count_type io_context::run_one()
 {
   asio::error_code ec;
@@ -79,13 +72,6 @@ io_context::count_type io_context::run_one()
   asio::detail::throw_error(ec);
   return s;
 }
-
-#if !defined(ASIO_NO_DEPRECATED)
-io_context::count_type io_context::run_one(asio::error_code& ec)
-{
-  return impl_.run_one(ec);
-}
-#endif // !defined(ASIO_NO_DEPRECATED)
 
 io_context::count_type io_context::poll()
 {
@@ -95,13 +81,6 @@ io_context::count_type io_context::poll()
   return s;
 }
 
-#if !defined(ASIO_NO_DEPRECATED)
-io_context::count_type io_context::poll(asio::error_code& ec)
-{
-  return impl_.poll(ec);
-}
-#endif // !defined(ASIO_NO_DEPRECATED)
-
 io_context::count_type io_context::poll_one()
 {
   asio::error_code ec;
@@ -109,13 +88,6 @@ io_context::count_type io_context::poll_one()
   asio::detail::throw_error(ec);
   return s;
 }
-
-#if !defined(ASIO_NO_DEPRECATED)
-io_context::count_type io_context::poll_one(asio::error_code& ec)
-{
-  return impl_.poll_one(ec);
-}
-#endif // !defined(ASIO_NO_DEPRECATED)
 
 void io_context::stop()
 {
@@ -143,31 +115,11 @@ io_context::service::~service()
 
 void io_context::service::shutdown()
 {
-#if !defined(ASIO_NO_DEPRECATED)
-  shutdown_service();
-#endif // !defined(ASIO_NO_DEPRECATED)
 }
 
-#if !defined(ASIO_NO_DEPRECATED)
-void io_context::service::shutdown_service()
+void io_context::service::notify_fork(io_context::fork_event)
 {
 }
-#endif // !defined(ASIO_NO_DEPRECATED)
-
-void io_context::service::notify_fork(io_context::fork_event ev)
-{
-#if !defined(ASIO_NO_DEPRECATED)
-  fork_service(ev);
-#else // !defined(ASIO_NO_DEPRECATED)
-  (void)ev;
-#endif // !defined(ASIO_NO_DEPRECATED)
-}
-
-#if !defined(ASIO_NO_DEPRECATED)
-void io_context::service::fork_service(io_context::fork_event)
-{
-}
-#endif // !defined(ASIO_NO_DEPRECATED)
 
 } // namespace asio
 

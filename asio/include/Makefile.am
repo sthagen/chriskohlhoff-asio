@@ -368,9 +368,7 @@ nobase_include_HEADERS = \
 	asio/execution/relationship.hpp \
 	asio/executor.hpp \
 	asio/executor_work_guard.hpp \
-	asio/experimental/append.hpp \
 	asio/experimental/as_single.hpp \
-	asio/experimental/as_tuple.hpp \
 	asio/experimental/awaitable_operators.hpp \
 	asio/experimental/basic_channel.hpp \
 	asio/experimental/basic_concurrent_channel.hpp \
@@ -383,7 +381,6 @@ nobase_include_HEADERS = \
 	asio/experimental/concurrent_channel.hpp \
 	asio/experimental/coro.hpp \
 	asio/experimental/coro_traits.hpp \
-	asio/experimental/deferred.hpp \
 	asio/experimental/detail/channel_operation.hpp \
 	asio/experimental/detail/channel_receive_op.hpp \
 	asio/experimental/detail/channel_send_functions.hpp \
@@ -402,7 +399,6 @@ nobase_include_HEADERS = \
 	asio/experimental/impl/use_coro.hpp \
 	asio/experimental/impl/use_promise.hpp \
 	asio/experimental/parallel_group.hpp \
-	asio/experimental/prepend.hpp \
 	asio/experimental/promise.hpp \
 	asio/experimental/use_coro.hpp \
 	asio/experimental/use_promise.hpp \
@@ -464,8 +460,6 @@ nobase_include_HEADERS = \
 	asio/impl/write.hpp \
 	asio/io_context.hpp \
 	asio/io_context_strand.hpp \
-	asio/io_service.hpp \
-	asio/io_service_strand.hpp \
 	asio/ip/address.hpp \
 	asio/ip/address_v4.hpp \
 	asio/ip/address_v4_iterator.hpp \
@@ -569,9 +563,7 @@ nobase_include_HEADERS = \
 	asio/ssl/impl/context.ipp \
 	asio/ssl/impl/error.ipp \
 	asio/ssl/impl/host_name_verification.ipp \
-	asio/ssl/impl/rfc2818_verification.ipp \
 	asio/ssl/impl/src.hpp \
-	asio/ssl/rfc2818_verification.hpp \
 	asio/ssl/stream_base.hpp \
 	asio/ssl/stream.hpp \
 	asio/ssl/verify_context.hpp \
