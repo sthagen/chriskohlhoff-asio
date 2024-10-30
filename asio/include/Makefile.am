@@ -55,6 +55,7 @@ nobase_include_HEADERS = \
 	asio/completion_condition.hpp \
 	asio/compose.hpp \
 	asio/composed.hpp \
+	asio/config.hpp \
 	asio/connect.hpp \
 	asio/connect_pipe.hpp \
 	asio/consign.hpp \
@@ -347,6 +348,7 @@ nobase_include_HEADERS = \
 	asio/detail/work_dispatcher.hpp \
 	asio/detail/wrapped_handler.hpp \
 	asio/dispatch.hpp \
+	asio/disposition.hpp \
 	asio/error_code.hpp \
 	asio/error.hpp \
 	asio/execution.hpp \
@@ -425,6 +427,8 @@ nobase_include_HEADERS = \
 	asio/impl/cancel_at.hpp \
 	asio/impl/cancellation_signal.ipp \
 	asio/impl/co_spawn.hpp \
+	asio/impl/config.hpp \
+	asio/impl/config.ipp \
 	asio/impl/connect.hpp \
 	asio/impl/connect_pipe.hpp \
 	asio/impl/connect_pipe.ipp \

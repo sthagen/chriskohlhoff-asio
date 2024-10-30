@@ -60,6 +60,7 @@ check_PROGRAMS = \
 	unit/completion_condition \
 	unit/compose \
 	unit/composed \
+	unit/config \
 	unit/connect \
 	unit/connect_pipe \
 	unit/consign \
@@ -69,6 +70,7 @@ check_PROGRAMS = \
 	unit/deferred \
 	unit/detached \
 	unit/dispatch \
+	unit/disposition \
 	unit/error \
 	unit/execution/any_executor \
 	unit/execution/blocking \
@@ -280,6 +282,7 @@ TESTS = \
 	unit/completion_condition \
 	unit/compose \
 	unit/composed \
+	unit/config \
 	unit/connect \
 	unit/connect_pipe \
 	unit/consign \
@@ -288,6 +291,7 @@ TESTS = \
 	unit/deferred \
 	unit/detached \
 	unit/dispatch \
+	unit/disposition \
 	unit/error \
 	unit/execution/any_executor \
 	unit/execution/blocking \
@@ -498,6 +502,7 @@ unit_co_spawn_SOURCES = unit/co_spawn.cpp
 unit_completion_condition_SOURCES = unit/completion_condition.cpp
 unit_compose_SOURCES = unit/compose.cpp
 unit_composed_SOURCES = unit/composed.cpp
+unit_config_SOURCES = unit/config.cpp
 unit_connect_SOURCES = unit/connect.cpp
 unit_connect_pipe_SOURCES = unit/connect_pipe.cpp
 unit_consign_SOURCES = unit/consign.cpp
@@ -507,6 +512,7 @@ unit_defer_SOURCES = unit/defer.cpp
 unit_deferred_SOURCES = unit/deferred.cpp
 unit_detached_SOURCES = unit/detached.cpp
 unit_dispatch_SOURCES = unit/dispatch.cpp
+unit_disposition_SOURCES = unit/disposition.cpp
 unit_error_SOURCES = unit/error.cpp
 unit_execution_any_executor_SOURCES = unit/execution/any_executor.cpp
 unit_execution_blocking_SOURCES = unit/execution/blocking.cpp

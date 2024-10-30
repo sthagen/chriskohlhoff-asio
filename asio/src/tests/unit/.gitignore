@@ -55,6 +55,7 @@ co_spawn
 completion_condition
 compose
 composed
+config
 connect
 connect_pipe
 consign
@@ -64,6 +65,7 @@ defer
 deferred
 detached
 dispatch
+disposition
 error
 error_handler
 execution_context
