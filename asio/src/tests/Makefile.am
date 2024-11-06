@@ -183,14 +183,16 @@ check_PROGRAMS = \
 	unit/write \
 	unit/write_at
 
-if !STANDALONE
 noinst_PROGRAMS = \
+	performance/client \
+	performance/server
+
+if !STANDALONE
+noinst_PROGRAMS += \
 	latency/tcp_client \
 	latency/tcp_server \
 	latency/udp_client \
-	latency/udp_server \
-	performance/client \
-	performance/server
+	latency/udp_server
 endif
 
 if HAVE_CXX11
@@ -221,6 +223,11 @@ check_PROGRAMS += \
 	unit/experimental/coro/stack_test \
 	unit/experimental/coro/use_coro
 endif
+endif
+
+if HAVE_BOOST_COROUTINE
+check_PROGRAMS += \
+	unit/spawn
 endif
 
 if HAVE_OPENSSL
@@ -409,6 +416,11 @@ TESTS += \
 	unit/experimental/parallel_group
 endif
 
+if HAVE_BOOST_COROUTINE
+TESTS += \
+	unit/spawn
+endif
+
 if HAVE_CXX20
 TESTS += \
 	unit/experimental/promise
@@ -445,13 +457,14 @@ noinst_HEADERS = \
 
 AM_CXXFLAGS = -I$(srcdir)/../../include
 
+performance_client_SOURCES = performance/client.cpp
+performance_server_SOURCES = performance/server.cpp
+
 if !STANDALONE
 latency_tcp_client_SOURCES = latency/tcp_client.cpp
 latency_tcp_server_SOURCES = latency/tcp_server.cpp
 latency_udp_client_SOURCES = latency/udp_client.cpp
 latency_udp_server_SOURCES = latency/udp_server.cpp
-performance_client_SOURCES = performance/client.cpp
-performance_server_SOURCES = performance/server.cpp
 endif
 
 unit_any_completion_executor_SOURCES = unit/any_completion_executor.cpp
@@ -632,6 +645,11 @@ unit_experimental_channel_SOURCES = unit/experimental/channel.cpp
 unit_experimental_channel_traits_SOURCES = unit/experimental/channel_traits.cpp
 unit_experimental_concurrent_channel_SOURCES = unit/experimental/concurrent_channel.cpp
 unit_experimental_parallel_group_SOURCES = unit/experimental/parallel_group.cpp
+endif
+
+if HAVE_BOOST_COROUTINE
+unit_spawn_SOURCES = unit/spawn.cpp
+unit_spawn_LDADD = -lboost_context
 endif
 
 if HAVE_CXX20
