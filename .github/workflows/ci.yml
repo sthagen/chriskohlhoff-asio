@@ -251,12 +251,12 @@ jobs:
             cxx-std: c++11
             optim-level: -O2
           #
-          # macOS / c++2a -fcoroutines-ts / -O2 / standalone
+          # macOS / c++2a / -O2 / standalone
           #
           - build-type: full
             runs-on: macos-latest
             compiler: g++
-            cxx-std: c++2a -fcoroutines-ts
+            cxx-std: c++2a
             optim-level: -O2
           #
           # macOS / c++11 / -O2 / standalone
@@ -322,18 +322,15 @@ jobs:
       run: |
         wget --quiet -O - ${{ matrix.boost-url }} | tar -xj
     - name: Configure
-      working-directory: asio
       run: |
         ./autogen.sh
         ./configure ${{ matrix.separate-compilation }} ${{ matrix.with-boost }}
     - name: Line length check
-      working-directory: asio
       run: perl ./boostify.pl --includes-only
     - name: Sanity check
       if: startsWith(matrix.build-type, 'sanity')
-      working-directory: asio/src/tests
+      working-directory: src/tests
       run: make unit/io_context.log unit/ip/tcp.log unit/ts/net.log
     - name: Build
       if: startsWith(matrix.build-type, 'full')
-      working-directory: asio
       run: make && make check
