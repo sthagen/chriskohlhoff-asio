@@ -2,7 +2,7 @@
 BOOSTDIR = ../../boost_1_34_1
 !endif
 
-COMMON_CXXFLAGS = -nologo -EHac -GR -I. -I../include
+COMMON_CXXFLAGS = -nologo -EHac -GR -I. -I../include -DASIO_DISABLE_DEPRECATED_MSG
 
 !ifdef CXXLATEST
 STD_CXXFLAGS = -std:c++latest -permissive-
@@ -236,6 +236,7 @@ UNIT_TEST_EXES = \
 	tests\unit\read_until.exe \
 	tests\unit\readable_pipe.exe \
 	tests\unit\recycling_allocator.exe \
+	tests\unit\redirect_disposition.exe \
 	tests\unit\redirect_error.exe \
 	tests\unit\registered_buffer.exe \
 	tests\unit\serial_port.exe \

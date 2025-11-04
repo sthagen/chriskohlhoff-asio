@@ -24,6 +24,7 @@ SEPARATE_COMPILATION_CXXFLAGS = \
 endif
 
 CXXFLAGS = -g -Wall -Wextra -mthreads -I../include \
+	-DASIO_DISABLE_DEPRECATED_MSG \
 	$(OPTIM_CXXFLAGS) \
 	$(BOOST_CXXFLAGS) \
 	$(SEPARATE_COMPILATION_CXXFLAGS)
@@ -134,6 +135,7 @@ UNIT_TEST_EXES = \
 	tests/unit/read.exe \
 	tests/unit/read_at.exe \
 	tests/unit/read_until.exe \
+	tests/unit/redirect_disposition.exe \
 	tests/unit/redirect_error.exe \
 	tests/unit/serial_port.exe \
 	tests/unit/serial_port_base.exe \

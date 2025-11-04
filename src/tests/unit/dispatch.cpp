@@ -16,6 +16,7 @@
 // Test that header file is self-contained.
 #include "asio/dispatch.hpp"
 
+#include "asio/bind_executor.hpp"
 #include "asio/io_context.hpp"
 #include "unit_test.hpp"
 
@@ -93,6 +94,22 @@ void move_only_result_handler(
 {
   ++(*count);
   *result_out = result_in.value();
+}
+
+void dispatch_no_args_test()
+{
+  io_context ctx(1);
+
+  int handler_count = 0;
+  asio::dispatch(asio::deferred)(
+      asio::bind_executor(ctx,
+        bindns::bind(void_handler, &handler_count)));
+
+  ASIO_CHECK(handler_count == 0);
+
+  ctx.run();
+
+  ASIO_CHECK(handler_count == 1);
 }
 
 void dispatch_function_test()
@@ -229,5 +246,6 @@ void dispatch_function_test()
 ASIO_TEST_SUITE
 (
   "dispatch",
+  ASIO_TEST_CASE(dispatch_no_args_test)
   ASIO_TEST_CASE(dispatch_function_test)
 )

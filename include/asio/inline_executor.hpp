@@ -139,7 +139,7 @@ private:
 public:
   /// Compare two executors for equality.
   /**
-   * Two executors are equal if they refer to the same underlying io_context.
+   * Two inline executors are always considered equal.
    */
   friend bool operator==(const basic_inline_executor&,
       const basic_inline_executor&) noexcept
@@ -149,7 +149,7 @@ public:
 
   /// Compare two executors for inequality.
   /**
-   * Two executors are equal if they refer to the same underlying io_context.
+   * Two inline executors are never considered unequal.
    */
   friend bool operator!=(const basic_inline_executor&,
       const basic_inline_executor&) noexcept

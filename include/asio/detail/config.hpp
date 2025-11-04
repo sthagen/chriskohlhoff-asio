@@ -623,7 +623,9 @@
 // Standard library support for std::source_location.
 #if !defined(ASIO_HAS_STD_SOURCE_LOCATION)
 # if !defined(ASIO_DISABLE_STD_SOURCE_LOCATION)
-// ...
+#  if (__cpp_lib_source_location >= 201907)
+#   define ASIO_HAS_STD_SOURCE_LOCATION 1
+#  endif // (__cpp_lib_source_location >= 201907)
 # endif // !defined(ASIO_DISABLE_STD_SOURCE_LOCATION)
 #endif // !defined(ASIO_HAS_STD_SOURCE_LOCATION)
 
@@ -848,11 +850,13 @@
 #  endif // !defined(ASIO_DISABLE_EVENTFD)
 # endif // !defined(ASIO_HAS_EVENTFD)
 # if !defined(ASIO_HAS_TIMERFD)
-#  if defined(ASIO_HAS_EPOLL)
-#   if (__GLIBC__ > 2) || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 8)
-#    define ASIO_HAS_TIMERFD 1
-#   endif // (__GLIBC__ > 2) || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 8)
-#  endif // defined(ASIO_HAS_EPOLL)
+#  if !defined(ASIO_DISABLE_TIMERFD)
+#   if defined(ASIO_HAS_EPOLL)
+#    if (__GLIBC__ > 2) || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 8)
+#     define ASIO_HAS_TIMERFD 1
+#    endif // (__GLIBC__ > 2) || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 8)
+#   endif // defined(ASIO_HAS_EPOLL)
+#  endif // !defined(ASIO_DISABLE_TIMERFD)
 # endif // !defined(ASIO_HAS_TIMERFD)
 # if defined(ASIO_HAS_IO_URING)
 #  if LINUX_VERSION_CODE < KERNEL_VERSION(5,10,0)
@@ -1385,6 +1389,20 @@
 #if !defined(ASIO_NODISCARD)
 # define ASIO_NODISCARD
 #endif // !defined(ASIO_NODISCARD)
+
+// Compiler support for the the [[deprecated(msg)]] attribute.
+#if !defined(ASIO_DEPRECATED_MSG)
+# if !defined(ASIO_DISABLE_DEPRECATED_MSG)
+#  if defined(__has_cpp_attribute)
+#   if __has_cpp_attribute(deprecated)
+#    define ASIO_DEPRECATED_MSG(msg) [[deprecated(msg)]]
+#   endif // __has_cpp_attribute(deprecated)
+#  endif // defined(__has_cpp_attribute)
+# endif // !defined(ASIO_DISABLE_DEPRECATED_MSG)
+#endif // !defined(ASIO_DEPRECATED_MSG)
+#if !defined(ASIO_DEPRECATED_MSG)
+# define ASIO_DEPRECATED_MSG(msg)
+#endif // !defined(ASIO_DEPRECATED_MSG)
 
 // Kernel support for MSG_NOSIGNAL.
 #if !defined(ASIO_HAS_MSG_NOSIGNAL)
