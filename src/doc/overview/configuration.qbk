@@ -178,6 +178,31 @@ below.
     ]
   ]
   [
+    [`reactor`]
+    [`use_eventfd`]
+    [`bool`]
+    [`true`]
+    [
+      Linux [^epoll] backend only.
+
+      When `true`, the reactor uses an [^eventfd] descriptor to wake a blocked
+      [^epoll_wait] call. When `false`, a pipe is used instead.
+    ]
+  ]
+  [
+    [`reactor`]
+    [`use_timerfd`]
+    [`bool`]
+    [`true`]
+    [
+      Linux [^epoll] backend only.
+
+      When `true`, the reactor uses a [^timerfd] descriptor to manage timeouts.
+      When `false`, the duration until the next timeout is computed and passed
+      as a timeout to [^epoll_wait].
+    ]
+  ]
+  [
     [`timer`]
     [`heap_reserve`]
     [`unsigned int`]
